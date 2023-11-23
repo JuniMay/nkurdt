@@ -38,7 +38,7 @@ def router_main():
                         print("client address is {}".format(client_addr))
 
                     loss_packet = random.uniform(0, 1) < args.loss
-                    delay = random.normalvariate(args.delay, 0.5)
+                    delay = abs(random.normalvariate(args.delay, 0.5))
 
                     total_count += 1
 
@@ -55,7 +55,7 @@ def router_main():
                     if (args.delay_server):
                     # also simulate
                         loss_packet = random.uniform(0, 1) < args.loss
-                        delay = random.normalvariate(args.delay, 0.5)
+                        delay = abs(random.normalvariate(args.delay, 0.5))
                         total_count += 1
 
                         if loss_packet:

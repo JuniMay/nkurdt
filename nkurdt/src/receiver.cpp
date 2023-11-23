@@ -146,6 +146,11 @@ Generator<bool> Receiver::recv() {
       }
     }
 
+    // For selective repeat, recv buffer is useful if the packet is out of order
+    // or lost. But for go back n, if the packet is out of order, the ack will
+    // be replied immediately. And the packet will be insert and erased from the
+    // recv buffer. The buffer here is just for compatibility with selective
+    // repeat.
     this->recv_buffer_.insert(std::move(packet.value()));
 
     // try to slide window, because set is ordered, we can just check the first
